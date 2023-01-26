@@ -12,13 +12,14 @@ load_dotenv()
 apikey = os.environ['apikey']
 url = os.environ['url']
 
-authenticator = IAMAuthenticator('apikey')
+authenticator = IAMAuthenticator(apikey)
 language_translator = LanguageTranslatorV3(
-    version='2018-05-01',
+    version='2023-01-13',
     authenticator=authenticator
 )
 
-language_translator.set_service_url('url')
+language_translator.set_service_url(url)
+language_translator.set_disable_ssl_verification(True)
 
 def english_to_french(english_text):
     #write the code here
