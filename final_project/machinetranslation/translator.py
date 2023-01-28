@@ -19,17 +19,20 @@ language_translator = LanguageTranslatorV3(
 )
 
 language_translator.set_service_url(url)
-language_translator.set_disable_ssl_verification(True)
+#language_translator.set_disable_ssl_verification(True)
 
 def english_to_french(english_text):
     #write the code here
     """
     this is a docstring for a function
     """
-    french_text = language_translator.translate(
-    text= english_text,
-    model_id='en-fr').get_result()
-
+    if len(english_text)>0:
+        result = language_translator.translate(
+        text= english_text,
+        model_id='en-fr').get_result()
+        french_text = result["translations"][0]["translation"]
+    else:
+        french_text = ''    
     return french_text
 
 def french_to_english(french_text):
@@ -37,8 +40,11 @@ def french_to_english(french_text):
     """
     this is docstring for a function
     """
-    english_text = language_translator.translate(
-    text= french_text,
-    model_id='fr-en').get_result()
-
+    if len(french_text)>0:
+        result = language_translator.translate(
+        text= french_text,
+        model_id='fr-en').get_result()
+        english_text = result["translations"][0]["translation"]
+    else:
+        english_text = ''       
     return english_text
