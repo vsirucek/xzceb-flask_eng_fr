@@ -2,7 +2,6 @@
 this is a module docstring
 """
 import unittest
-
 from translator import french_to_english, english_to_french
 
 class TestTranslator(unittest.TestCase):
